@@ -21,129 +21,128 @@
 
 ## Exercice 1
 
+Voici le texte corrigé :
+
 ### Question 1
 
-**Enoncé :**
+**Énoncé :**
 
-Codez une fonction calculant le nombre d’entiers compris entre 1 et `n`, qui sont divisibles par 8 et pas par 6. La fonction demande `n` à l’utilisateur.
+Codez une fonction calculant le nombre d'entiers compris entre 1 et `n`, qui sont divisibles par 8 et non par 6. La fonction demande `n` à l'utilisateur.
 
 **Corrigé :**
 
-Il va falloir créer une fonction, qui compte les multiples de 8 qui ne sont pas multiples de 6, entre 1 et `n`. Par accumulation, on saura alors compter ces multiples.
+Il faut créer une fonction qui compte les multiples de 8 qui ne sont pas des multiples de 6 entre 1 et `n`. En accumulant ces multiples, nous pourrons déterminer leur nombre.
 
-Dans un premier temps, on demande la valeur de n à l'utilisateur. Il est précisé que c'est la fonction qui demande `n`, donc l'appel de `input()` se fera dans le corps de la fonction.
+Dans un premier temps, demandons la valeur de `n` à l'utilisateur. Il est précisé que la fonction doit demander `n`, donc l'appel à `input()` doit être fait dans le corps de la fonction. Comme `n` doit être un entier et que la fonction `input()` renvoie une chaîne de caractères, nous devons convertir le retour de `input()` en entier avec `int()`.
 
 ```python
-def cptEnt() :
-    # on demande n à l'utilisateur
+def cptEnt():
+    # Demander n à l'utilisateur
     n = int(input("Entrez une valeur pour n :"))
 ```
 
-Pour bien faire, on pourrait vérifier que `n` soit supérieur à 1, sinon la suite ne fonctionnerait pas. Cette vérification n'est pas notée pour le CC1.
+Pour être complet, nous pourrions vérifier que `n` est supérieur à 1, sinon la suite ne fonctionnera pas. Cette vérification n'est pas notée pour le contrôle continu 1 (CC1).
 
 ```python
-def cptEnt() :
-    # on demande n à l'utilisateur
+def cptEnt():
+    # Demander n à l'utilisateur
     n = int(input("Entrez une valeur pour n :"))
-    while n<= 1 :
-        print("n doit etre supérieur à 1 !")
+    while n <= 1:
+        print("n doit être supérieur à 1 !")
         n = int(input("Entrez une valeur pour n :"))
 ```
 
-On peut ensuite commencer à compter. Mais juste avant, on initialise une variable qui servira de compteur pour compter les multiples de 8 qui ne sont pas multiples de 6.
+Ensuite, nous pouvons commencer à compter. Juste avant cela, initialisons une variable qui servira de compteur pour les multiples de 8 qui ne sont pas multiples de 6.
 
 ```python
-def cptEnt() :.
-    # on demande n à l'utilisateur
+def cptEnt():
+    # Demander n à l'utilisateur
     n = int(input("Entrez une valeur pour n :"))
-    while n<= 1 :
-        print("n doit etre supérieur à 1 !")
+    while n <= 1:
+        print("n doit être supérieur à 1 !")
         n = int(input("Entrez une valeur pour n :"))
-    # on initialise une variable qui servira à compter les multiples par la suite   
+    # Initialiser une variable pour compter les multiples
     compteur = 0
 ```
 
-On va utiliser une boucle `for`, pour tester chaque entier de 1 à `n`. Une boucle `for` est plus appropriée ici, car on sait quand il va falloir s'arrêter.
+Nous utiliserons une boucle `for` pour tester chaque entier de 1 à `n`. Une boucle `for` est plus appropriée ici, car nous savons quand il faut s'arrêter.
 
-Attention : on va jusqu'à `n`. La borne max de la fonction `range()` est exclue, donc il faut aller jusqu'à `n + 1`.
+Attention : nous allons jusqu'à `n`. La borne supérieure de la fonction `range()` est exclue, donc nous devons aller jusqu'à `n + 1`.
 
 ```python
-def cptEnt() :
-    # on demande n à l'utilisateur
+def cptEnt():
+    # Demander n à l'utilisateur
     n = int(input("Entrez une valeur pour n :"))
-    while n<= 1 :
-        print("n doit etre supérieur à 1 !")
+    while n <= 1:
+        print("n doit être supérieur à 1 !")
         n = int(input("Entrez une valeur pour n :"))
-    
-    # on initialise une variable qui servira à compter les multiples par la suite
+    # Initialiser une variable pour compter les multiples
     compteur = 0
 
-    for i in range(1, n + 1) :
+    for i in range(1, n + 1):
         pass
 ```
 
-Dans chaque itération (= chaque tour de boucle), on va faire un test afin de savoir :
+À chaque itération (à chaque tour de boucle), nous effectuerons un test pour déterminer :
 
-- si `i` est multiple de 8
-- ET si `i` n'est pas multiple de 6
+- Si `i` est un multiple de 8
+- ET si `i` n'est pas un multiple de 6
 
-Pour cela, on va utiliser le mod (`%` en python) qui renvoie le reste d'une division euclidienne.
+Pour cela, nous utiliserons l'opérateur modulo (`%` en Python) qui renvoie le reste d'une division euclidienne.
 
-Si `i % 8 == 0`, alors on saura que `i` est multiple de 8. La même logique s'appplique pour la condition d'après : il faut tester que `i % 6 != 0` pour savoir que `i` n'est pas multiple de 6.
+Si `i % 8 == 0`, alors nous saurons que `i` est un multiple de 8. La même logique s'applique pour la condition suivante : nous devons tester que `i % 6 != 0` pour déterminer que `i` n'est pas un multiple de 6.
 
-On assemble les deux conditions avec un ET (`and`) et on aura alors tester que les deux conditions sont respectées, en même temps.
+Nous combinons ces deux conditions avec l'opérateur ET (`and`) pour nous assurer que les deux conditions sont respectées en même temps.
 
 ```python
-def cptEnt() :
-    # on demande n à l'utilisateur
+def cptEnt():
+    # Demander n à l'utilisateur
     n = int(input("Entrez une valeur pour n :"))
-    while n<= 1 :
-        print("n doit etre supérieur à 1 !")
+    while n <= 1:
+        print("n doit être supérieur à 1 !")
         n = int(input("Entrez une valeur pour n :"))
-    
-    # on initialise une variable qui servira à compter les multiples par la suite
+    # Initialiser une variable pour compter les multiples
     compteur = 0
 
-    for i in range(1, n + 1) :
-        # on teste que i soit multiple de 8 et pas de 6
-        if i % 8 == 0 and i % 6 != 0 :
+    for i in range(1, n + 1):
+        # Tester si i est un multiple de 8 et non de 6
+        if i % 8 == 0 and i % 6 != 0:
 ```
 
-une fois qu'on trouve un bon `i`, il faut incrémenter le compteur.
+Une fois que nous trouvons une valeur valide pour `i`, nous incrémentons le compteur.
 
-On renverra alors ce compteur en fin de fonction
+Nous renvoyons ensuite ce compteur en fin de fonction.
 
 ```python
-def cptEnt() :
-    # on demande n à l'utilisateur
+def cptEnt():
+    # Demander n à l'utilisateur
     n = int(input("Entrez une valeur pour n :"))
-    while n<= 1 :
-        print("n doit etre supérieur à 1 !")
+    while n <= 1:
+        print("n doit être supérieur à 1 !")
         n = int(input("Entrez une valeur pour n :"))
-    
-    # on initialise une variable qui servira à compter les multiples par la suite
+    # Initialiser une variable pour compter les multiples
     compteur = 0
 
-    for i in range(1, n + 1) :
-        # on teste que i soit multiple de 8 et pas de 6
-        if i % 8 == 0 and i % 6 != 0 :
+    for i in range(1, n + 1):
+        # Tester si i est un multiple de 8 et non de 6
+        if i % 8 == 0 and i % 6 != 0:
             compteur += 1
 
     return compteur
 ```
 
-Pour tester la fonction, il faut l'appeler dans l'espace global. Pour cela, vous devez ecrire le nom de la fonction, puis une paire de parenthèse (sans rien à l'intérieur, vu que la fonction n'a pas de paramètres en entrée).
+Pour tester la fonction, il faut l'appeler dans l'espace global. Pour cela, vous devez écrire le nom de la fonction suivi d'une paire de parenthèses (sans rien à l'intérieur, car la fonction n'a pas de paramètres en entrée).
 
 ```python
 # Appel de la fonction cptEnt(). La fonction est appelée, puis son résultat est affiché par la fonction print().
 print(cptEnt())
 ```
 
-**Version alternative, avec les compréhensions de listes :**
+**Version alternative, avec les compréhensions de liste :**
 
-Il était possible d'utiliser une liste par compréhension pour résoudre cet exercice. L'idée est de constituer la liste des multiples de 8, mais pas de 6, et renvoyer le comptage des éléments de la liste.
+Il est possible d'utiliser une liste en compréhension pour résoudre cet exercice. L'idée est de construire une liste des multiples de 8 qui ne sont pas multiples de 6, puis de renvoyer le compte des éléments de la liste.
 
-Rappelez-vous, les compréhensions de liste fonctionnent avec 3 parties :
+Rappelez-vous que les compréhensions de liste fonctionnent avec trois parties :
 
 ```python
 [CCCCCC   AAAAAA   BBBBBB]
@@ -152,40 +151,39 @@ Rappelez-vous, les compréhensions de liste fonctionnent avec 3 parties :
 où :
 
 - AAAAAA est la définition de la boucle
-- BBBBBB, optionel, est la ou les conditions pour lesquels on prendra la valeur d'itération en compte
-- CCCCCC est l'opération réalisée avant ajout dans la boucle.
+- BBBBBB, optionnel, sont les conditions pour lesquelles nous prenons en compte la valeur d'itération
+- CCCCCC est l'opération réalisée avant l'ajout dans la boucle.
 
-En reprenant la correction de la méthode par accumulation, on avait déjà quelques éléments. On peut alors adapter un peu le code pour construire la compréhension de liste :
+En reprenant la correction de la méthode par accumulation, nous avons déjà quelques éléments. Nous pouvons donc adapter le code pour construire la compréhension de liste :
 
 ```python
-def cptEntComprehension() :
-    # on demande n à l'utilisateur
+def cptEntComprehension():
+    # Demander n à l'utilisateur
     n = int(input("Entrez une valeur pour n :"))
-    while n<= 1 :
-        print("n doit etre supérieur à 1 !")
+    while n <= 1:
+        print("n doit être supérieur à 1 !")
         n = int(input("Entrez une valeur pour n :"))
 
-    
-    # on récupère la liste construite par compréhension
-    lst = [ i   for i in range(1, n + 1)   if i % 8 == 0 and i % 6 != 0]
-    # la liste lst contient les multiples de 8 qui ne sont pas multiples de 6, de 1 à n.
+    # Récupérer la liste construite par compréhension
+    lst = [i for i in range(1, n + 1) if i % 8 == 0 and i % 6 != 0]
+    # La liste lst contient les multiples de 8 qui ne sont pas multiples de 6, de 1 à n.
 
-    # on renvoie la longeur de la liste
+    # Renvoyer la longueur de la liste
     return len(lst)
 ```
 
-On plus concis :
+Une version plus concise serait la suivante :
 
 ```python
-def cptEntComprehension() :
-    # on demande n à l'utilisateur
+def cptEntComprehension():
+    # Demander n à l'utilisateur
     n = int(input("Entrez une valeur pour n :"))
-    while n<= 1 :
-        print("n doit etre supérieur à 1 !")
+    while n <= 1:
+        print("n doit être supérieur à 1 !")
         n = int(input("Entrez une valeur pour n :"))
-    
-    # on récupère la liste construite par compréhension
-    return len([ i for i in range(1, n + 1) if i % 8 == 0 and i % 6 != 0])    
+
+    # Récupérer la liste construite par compréhension
+    return len([i for i in range(1, n + 1) if i % 8 == 0 and i % 6 != 0])
 ```
 
 ### Question 2a
@@ -1670,7 +1668,7 @@ def question4() :
     temperaturesAnneeB = genereAnnee()
     moyennesB = moyennesAnnee(temperaturesAnneeB)
 
-    scoreComparaison = compareAnnees()
+    scoreComparaison = compareAnnees(moyennesA, moyennesB)
     if (scoreComparaison > 0) :
         print("Les températures de la liste A sont en moyennes supérieures à celles de la liste B")
     else :
