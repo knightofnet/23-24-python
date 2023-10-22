@@ -195,9 +195,9 @@ Définir f en python et testez que f(5) renvoie 2,7.
 
 **Corrigé :**
 
-Nous allons définir la fonction python `f(x)` en utilisant la définition mathématique donnée.
+Nous allons définir la fonction Python `f(x)` en utilisant la définition mathématique donnée.
 
-Nous devons nous assurer que `x` est supérieur à 0, car la fonction est définie pour x>0.
+Nous devons nous assurer que `x` est supérieur à 0, car la fonction est définie pour x > 0.
 
 ```python
 def f(x):
@@ -205,25 +205,25 @@ def f(x):
         print("x doit être supérieur à 0.")
         return None
     
-    return 0.5 * (x + 2/x)
+    return 0.5 * (x + 2 / x)
 ```
 
-Ici, nous avons ajouté une condition pour vérifier si `x` est supérieur à 0. Si ce n'est pas le cas, un message d'erreur est affiché et la fonction retourne `None`. Aucun point n'est retiré si la vérification sur `x` n'est pas écrite. Sans, la fonction python `f(x)` est alors :
+Ici, nous avons ajouté une condition pour vérifier si `x` est supérieur à 0. Si ce n'est pas le cas, un message d'erreur est affiché, et la fonction retourne `None`. Il est important de noter que sans cette vérification sur `x`, la fonction Python `f(x)` est définie comme suit :
 
 ```python
 def f(x):   
-    return 0.5 * (x + 2/x)
+    return 0.5 * (x + 2 / x)
 ```
 
-Pour vérifier que la fonction `f(x)` est bien définit, on propose de tester que `f(5)` renvoie bien 2.7.
+Pour vérifier que la fonction `f(x)` est correctement définie, nous proposons de tester si `f(5)` renvoie bien 2.7.
 
-Pour cela, deux façons acceptées :
+Pour ce faire, deux méthodes sont acceptées :
 
 ```python
-# avec un print()
-print("f(5) doit donner 2.7", f(5))
+# Utilisation d'un print()
+print("f(5) doit renvoyer 2.7 :", f(5))
 
-# avec une assertion
+# Utilisation d'une assertion
 assert f(5) == 2.7
 ```
 
