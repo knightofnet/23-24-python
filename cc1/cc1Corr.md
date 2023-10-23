@@ -295,104 +295,102 @@ t : 116 - 0b1110100
 
 **Corrigé :**
 
-Pour commnencer, il faut définir la fonction python. Voici sa signature (la définition) :
+Pour commencer, il faut définir la fonction Python. Voici sa signature (la définition) :
 
 ```python
-def afficheChaineBin(texte) :
+def afficheChaineBin(texte):
     pass
 ```
 
-On récupère dans la variable `texte` une chaine de caractère. Pour travailler caractère par caractère, on peut utiliser la boucle `for`. En effet, si on boucle sur une chaine de caractère, à chaque itération, la variable d'itération contiendra un caractère spécifique de la chaîne.
+On récupère une chaîne de caractères dans la variable `texte`. Pour travailler caractère par caractère, nous pouvons utiliser une boucle `for`. En effet, si nous bouclons sur une chaîne de caractères, à chaque itération, la variable d'itération `c` contiendra un caractère spécifique de la chaîne.
 
 Ce qui donne :
 
 ```python
-def afficheChaineBin(texte) :
+def afficheChaineBin(texte):
 
     # On itère sur la variable texte.
     # La variable d'itération c prend successivement 
-    # le caractère suivant de la chaine de caractères 
+    # le caractère suivant de la chaîne de caractères 
     # contenue dans texte.
-    for c in texte :
+    for c in texte:
         pass
 ```
 
-On a alors un caractère dans `c`. C'est avec ce caractère que l'on va pouvoir réaliser l'affichage demandé; à savoir :
+Maintenant, nous avons un caractère dans `c`. C'est avec ce caractère que nous allons réaliser l'affichage demandé, à savoir :
 
-- 1 : afficher le caractère,
-- 2 : afficher sa représentation décimale,
-- 3 : afficher sa représentation binaire.
+1. Afficher le caractère.
+2. Afficher sa représentation décimale.
+3. Afficher sa représentation binaire.
 
-En ce qui concerne le point 2, pour convertir le caractère en sa valeur décimale, on utilise la fonction `ord()` qui renvoie le nombre entier représentant le code Unicode du caractère donné.
+Pour le point 2, pour convertir le caractère en sa valeur décimale, nous utiliserons la fonction `ord()` qui renvoie le nombre entier représentant le code Unicode du caractère donné.
 
-Pour le point 3, on doit convertir la valeur décimale en binaire. Cependant, plutôt que de rappeler la fonction `ord()`, on optimise le processus en stockant la valeur décimale dans une variable dès le départ. Ensuite, on utilise cette valeur stockée pour obtenir la représentation binaire du caractère.
+Pour le point 3, nous devons convertir la valeur décimale en binaire. Cependant, plutôt que de rappeler la fonction `ord()`, nous optimiserons le processus en stockant la valeur décimale dans une variable dès le départ. Ensuite, nous utiliserons cette valeur stockée pour obtenir la représentation binaire du caractère.
 
-Enfin, pour afficher le tout, on peut utiliser un `print()`.
+Enfin, pour afficher le tout, nous pouvons utiliser un seul `print()`.
 
 ```python
-def afficheChaineBin(texte) :
+def afficheChaineBin(texte):
 
     # On itère sur la variable texte.
     # La variable d'itération c prend successivement 
-    # le caractère suivant de la chaine de caractères 
+    # le caractère suivant de la chaîne de caractères 
     # contenue dans texte.
-    for c in texte :
-        # point 1 : on affiche c avec print. Pour éviter 
-        # le retour à la ligne, on change la valeur du 
-        # paramètre end de print().
+    for c in texte:
+        # Point 1 : Nous affichons le caractère avec print. 
+        # Pour éviter le retour à la ligne, nous changeons la 
+        # valeur du paramètre end de print().
         print(c, ": ", end="")
 
-        # point 2 : on calcule la représentation décimale
-        # de c. On la garde dans la variable d.
+        # Point 2 : Nous calculons la représentation décimale
+        # de c. Nous la stockons dans la variable d.
         d = ord(c)
 
-        # puis on l'affiche :
-        print(d, "- ", end="")
+        # Puis nous l'affichons :
+        print(d, "-", end="")
 
-        # point 3 : on affiche la représentation binaire en
+        # Point 3 : Nous affichons la représentation binaire en
         # utilisant la fonction bin() sur d. Cela peut être
         # directement réalisé dans le print().
-        # C'est le dernier print(), donc là, il faudra qu'il
-        # y ait un retour à la ligne à la fin (comportement
-        # par défaut de print(); donc on ne redéfinit pas le 
-        # paramètre end.
+        # C'est le dernier print(), donc là, il faut qu'il y ait
+        # un retour à la ligne à la fin (comportement par défaut
+        # de print(), donc nous ne redéfinissons pas le paramètre end.
         print(bin(d))
-
 ```
 
-Et c'est tout ! Maintenant il faut tester que l'affiche avec `texte="Test"` corresponde à celui présenter dans l'énoncer. Pour cela, il faut appeler la fonction :
+Et voilà ! Maintenant, il faut tester que l'affichage avec `texte="Test"` correspond à celui présenté dans l'énoncé. Pour cela, nous devons appeler la fonction :
 
 ```python
 afficheChaineBin("Test")
 ```
 
-On peut simplifier la fonction, en utilisant qu'un seul `print()`. Ce qui donne :
+Nous pouvons également simplifier la fonction en utilisant un seul `print()`. Voici la version simplifiée :
 
 ```python
-def afficheChaineBin_alternative(texte) :
+def afficheChaineBin_alternative(texte):
 
     # On itère sur la variable texte.
     # La variable d'itération c prend successivement 
-    # le caractère suivant de la chaine de caractères 
+    # le caractère suivant de la chaîne de caractères 
     # contenue dans texte.
-    for c in texte :
-        d = ord(c)        
+    for c in texte:
+        d = ord(c)
         print(c, ":", d, "-", bin(d))
 
 afficheChaineBin_alternative("Test")
 ```
 
-Une autre alternative, en utilisant le formatage de texte (vu dans le cours 6 sur les chaine de caractères) :
+Une autre alternative consiste à utiliser le formatage de texte (vu dans le cours 6 sur les chaînes de caractères) :
 
 ```python
-def afficheChaineBin_alternativeFormat(texte) :
+def afficheChaineBin_alternativeFormat(texte):
 
     # On itère sur la variable texte.
     # La variable d'itération c prend successivement 
-    # le caractère suivant de la chaine de caractères 
+    # le caractère suivant de la chaîne de caractères 
     # contenue dans texte.
-    for c in texte :
-        d = ord(c)        
+    for c in texte:
+        d = ord(c)
         print("{} : {} - {}".format(c, d, bin(d)))
 
 afficheChaineBin_alternativeFormat("Test")
