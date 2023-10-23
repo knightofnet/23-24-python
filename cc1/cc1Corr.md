@@ -737,7 +737,7 @@ print("Températures de l'année :", temperatures_annee)
 
 **Corrigé :**
 
-Avec la question 1, on a définit une fonction qui permet de créer une liste de `nbJour` températures entre deux bornes `tMin` et `tMax`. Dans cette question, on utiliser les deux tuples fournis pour valoriser les paramètres de la fonction `genereListeTemperature(nbJour, tMin, tMax)` de la question 1 pour construire une liste finale, correspondant aux températures d'une année entière.
+Avec la question 1, nous avons défini une fonction permettant de créer une liste de `nbJour` températures entre deux bornes `tMin` et `tMax`. Dans cette question, nous allons utiliser les deux tuples fournis pour valoriser les paramètres de la fonction `genereListeTemperature(nbJour, tMin, tMax)` de la question 1 afin de construire une liste finale correspondant aux températures d'une année entière.
 
 Commençons par définir la fonction :
 
@@ -746,39 +746,38 @@ def genereAnnee() :
     pass
 ```
 
-Puisque la fonction va devoir retourner une liste de températures (celles d'une année entière), on commence le code  de la fonction par initialiser une liste vide ``temperaturesAn`` pour conserver les températures.
+Puisque la fonction doit retourner une liste de températures correspondant à une année entière, nous commençons le code de la fonction en créant une liste vide `temperaturesAn` pour stocker les températures.
 
 ```python
 def genereAnnee() :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperaturesAn = []
 
     for nbJour in nbrJoursParMois :
         pass
 ```
 
-Il va falloir constuire des sous-listes, une par mois. On ajoutera ensuite les éléments de ses sous-listes dans la liste `temperaturesAn`. Puisqu'il faut générer une sous-liste par mois, on va utiliser une boucle for. Mais quelle type de boucle for ?
+Il est nécessaire de construire des sous-listes, une par mois. Ensuite, nous ajouterons les éléments de ces sous-listes dans la liste `temperaturesAn`. Puisqu'il faut générer une sous-liste par mois, nous utiliserons une boucle `for`. Mais quelle type de boucle `for` devons-nous utiliser ?
 
-Ici le plus simple c'est d'utiliser sur les indices. Une boucle avec enumerate() simplifierais également les choses. Ces deux façons de faire sont à utiliser pour cette question, car on va avoir besoin :
+La méthode la plus simple consiste à utiliser les indices. Une boucle avec `enumerate()` simplifierait également les choses. Les deux approches sont appropriées ici, car nous avons besoin :
 
-- du nombre de jour d'un mois, nbJour, qu'on pourra trouver comme valeur dans le tuple `nbrJoursParMois`.
-- mais également de l'indice où l'on a trouver cet élément, car au même indice, on trouvera tMin et tMax dans le tuple `tParMois`.
+- du nombre de jours d'un mois, `nbJour`, que nous pouvons trouver comme valeur dans le tuple `nbrJoursParMois`.
+- mais aussi de l'indice où nous avons trouvé cet élément, car au même indice, nous trouverons `tMin` et `tMax` dans le tuple `tParMois`.
 
-On vous indiquait de copier-coller ces deux tuples dans l'espace globale de votre fichier. Ils sont donc accessible dans n'importe quelles fonctions puisque ce sont dès lors des variables globales.
+Ces deux tuples ont été copiés dans l'espace global de votre fichier, ce qui signifie qu'ils sont accessibles dans n'importe quelle fonction en tant que variables globales.
 
 Ce qui donne :
 
 ```python
 def genereAnnee() :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperaturesAn = []
 
     for i in range(len(nbrJoursParMois)) :
-        # on recupère le nombre de jour pour un mois
-        nbrJourPourUnMois = nbrJoursParMois[i]
+        # Nous récupérons le nombre de jours pour un mois.
+        nbJourPourUnMois = nbrJoursParMois[i]
 
-        # on récupère les températures min et max, 
-        # dans le tuple tParMois.
+        # Nous récupérons les températures min et max dans le tuple tParMois.
         temperaturesMinEtMax = tParMois[i]
 
         tpMin = temperaturesMinEtMax[0]
@@ -789,58 +788,56 @@ Ou en utilisant l'unpacking de tuple :
 
 ```python
 def genereAnnee() :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperaturesAn = []
 
     for i in range(len(nbrJoursParMois)) :
-        # on recupère le nombre de jour pour un mois
-        nbrJourPourUnMois = nbrJoursParMois[i]
-        # on récupère les températures min et max, 
-        # dans le tuple tParMois.
+        # Nous récupérons le nombre de jours pour un mois.
+        nbJourPourUnMois = nbrJoursParMois[i]
+        # Nous récupérons les températures min et max dans le tuple tParMois.
         tpMin, tpMax = tParMois[i]
 ```
 
-A ce stade, on a trois variables nbrJourPourUnMois, tMin et tMax qui vont nous permettre de valoriser les paramètres de la fonction `genereListeTemperature(nbJour, tMin, tMax)` de la question 1. On peut donc l'utiliser pour obtenir une sous-liste de `nbrJourPourUnMois` températures entre `tpMin` et `tpMax` :
+À ce stade, nous avons trois variables, `nbJourPourUnMois`, `tMin`, et `tMax`, qui nous permettront de valoriser les paramètres de la fonction `genereListeTemperature(nbJour, tMin, tMax)` de la question 1. Nous pouvons donc l'utiliser pour obtenir une sous-liste de `nbJourPourUnMois` températures entre `tpMin` et `tpMax` :
 
 ```python
 def genereAnnee() :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperaturesAn = []
 
     for i in range(len(nbrJoursParMois)) :
-        # on recupère le nombre de jour pour un mois
-        nbrJourPourUnMois = nbrJoursParMois[i]
-        # on récupère les températures min et max, 
-        # dans le tuple tParMois.
+        # Nous récupérons le nombre de jours pour un mois.
+        nbJourPourUnMois = nbrJoursParMois[i]
+        # Nous récupérons les températures min et max dans le tuple tParMois.
         tpMin, tpMax = tParMois[i]
 
-        # on recupère une liste de températures
-        ssListe = genereListeTemperature(nbrJourPourUnMois, tpMin, tpMax)
+        # Nous récupérons une liste de températures.
+        ssListe = genereListeTemperature(nbJourPourUnMois, tpMin, tpMax)
 ```
 
-A chaque tour de boucle, on peut étendre la liste finale, `temperaturesAn`, avec cette sous-liste. Pour cela on utilise la méthode `extend()` de la liste `temperaturesAn` :
+À chaque tour de boucle, nous pouvons étendre la liste finale, `temperaturesAn`, avec cette sous-liste en utilisant la méthode `extend()` de la liste `temperaturesAn` :
 
 ```python
 def genereAnnee() :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperaturesAn = []
 
     for i in range(len(nbrJoursParMois)) :
-        # on recupère le nombre de jour pour un mois
-        nbrJourPourUnMois = nbrJoursParMois[i]
-        # on récupère les températures min et max, 
-        # dans le tuple tParMois.
+        # Nous récupérons le nombre de jours pour un mois.
+        nbJourPourUnMois = nbrJoursParMois[i]
+        # Nous récupérons les températures min et max dans le tuple tParMois.
         tpMin, tpMax = tParMois[i]
 
-        # on recupère une liste de températures
-        ssListe = genereListeTemperature(nbrJourPourUnMois, tpMin, tpMax)
+        # Nous récupérons une liste de températures.
+        ssListe = genereListeTemperature(nbJourPourUnMois, tpMin, tpMax)
 
+        # Nous étendons la liste finale avec cette sous-liste.
         temperaturesAn.extend(ssListe)
 
     return temperaturesAn
 ```
 
-Avec les éléments données dans le fichier cc1.py, vous aviez tout ce qu'il faut pour tester la fonction :
+Avec les éléments fournis dans le fichier cc1.py, vous avez tout ce dont vous avez besoin pour tester la fonction :
 
 ```python
 temperatures_annee = genereAnnee()
