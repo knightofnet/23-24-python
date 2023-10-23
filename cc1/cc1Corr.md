@@ -1183,39 +1183,38 @@ N'oubliez pas d'appeler la fonction `question4()` dans le corps principal de vot
 
 **Corrigé :**
 
-La question 4 se décompose en 3 sous-parties, mais on va corriger le tout en un seul bloc.
+La question 4 se décompose en 3 sous-parties, mais nous allons corriger le tout en un seul bloc.
 
 #### Fonction question4()
 
-Au début, on vous propose de créer une fonction question4() qui va avoir le rôle de fonction exécutante pour ce que l'on va faire durant la question... 4 ! Dans cette fonction et en utilisant les fonctions définies précédemment, vous devez générer deux années puis les moyennes de ces deux années.
+Au début, nous vous proposons de créer une fonction `question4()` qui aura pour rôle d'être la fonction exécutante pour ce que nous allons faire durant la question 4. Dans cette fonction, en utilisant les fonctions définies précédemment, vous devez générer deux années, puis calculer les moyennes de ces deux années.
 
-Ce qui donne :
+Voici le code de la fonction `question4()` :
 
 ```python
 def question4() :
 
-    # on récupère les éléments (températures et moyennes)
+    # On récupère les éléments (températures et moyennes)
     # pour l'année A
     temperaturesAnneeA = genereAnnee()
     moyennesA = moyennesAnnee(temperaturesAnneeA)
 
-    # on récupère les éléments (températures et moyennes)
+    # On récupère les éléments (températures et moyennes)
     # pour l'année B
     temperaturesAnneeB = genereAnnee()
     moyennesB = moyennesAnnee(temperaturesAnneeB)
-```
 
 On n'a pas encore définit la fonctin compareAnnees(), mais on peut déjà préparer son appel et faire le test indiqué dans la question 4.(c). A priori, cette fonction va renvoyer un nombre. Selon que ce nombre soit positif ou négatif, on affichera un message différent. Ce qui donne :
 
 ```python
 def question4() :
 
-    # on récupère les éléments (températures et moyennes)
+    # On récupère les éléments (températures et moyennes)
     # pour l'année A
     temperaturesAnneeA = genereAnnee()
     moyennesA = moyennesAnnee(temperaturesAnneeA)
 
-    # on récupère les éléments (températures et moyennes)
+    # On récupère les éléments (températures et moyennes)
     # pour l'année B
     temperaturesAnneeB = genereAnnee()
     moyennesB = moyennesAnnee(temperaturesAnneeB)
@@ -1227,139 +1226,96 @@ def question4() :
         print("Les températures de la liste B sont en moyennes supérieures à celles de la liste A")
 ```
 
-Il ne reste plus qu'à implémenter la fonction compareAnnees().
+Il ne reste plus qu'à implémenter la fonction `compareAnnees()`.
 
 #### Fonction compareAnnees()
 
-Cette fonction va renvoyer un score de comparaison entre deux années, représentées par deux listes passées en paramètres. On peut commencer par écrire la définition de la fonction :
+Cette fonction doit renvoyer un score de comparaison entre deux années, représentées par deux listes passées en paramètres. Voici la définition de la fonction `compareAnnees()` :
 
 ```python
 def compareAnnees(lstA, lstB) :
     pass
 ```
 
-On va comparer deux à deux, les éléments de listes `lstA` et `lstB`. Pour chaque comparaison, si l'élément de `lstA` est supérieur à celui de `lstB`, alors on ajoutera 1 au score final, sinon on retranchera 1. Pour que cela puisse fonctionner correctement, on pourrait tester que les deux listes `lstA` et `lstB` aient la même longueur :
+Nous allons comparer deux à deux les éléments des listes `lstA` et `lstB`. Pour chaque comparaison, si l'élément de `lstA` est supérieur à celui de `lstB`, nous ajouterons 1 au score final, sinon nous retrancherons 1. Pour que cela fonctionne correctement, nous allons d'abord vérifier que les deux listes `lstA` et `lstB` ont la même longueur :
 
 ```python
 def compareAnnees(lstA, lstB) :
     
-    # on s'assure que les deux listes aient la même longueur
+    # On s'assure que les deux listes ont la même longueur
     if len(lstA) != len(lstB) :
-        print("Erreur : les deux listes n'ont pas la même longueur")
+        print("Erreur : les deux listes n'ont pas la même longueur.")
         return None    
 ```
 
-La fonction retourne un score final. On va initialiser ce score à 0 pour commencer :
+Ensuite, nous initialiserons le score final à 0 :
 
 ```python
 def compareAnnees(lstA, lstB) :
     
-    # on s'assure que les deux listes aient la même longueur
+    # On s'assure que les deux listes ont la même longueur
     if len(lstA) != len(lstB) :
-        print("Erreur : les deux listes n'ont pas la même longueur")
+        print("Erreur : les deux listes n'ont pas la même longueur.")
         return None   
 
     scoreFinal = 0 
 ```
 
-On va parcourir les listes en bouclant sur les indices (de l'une ou de l'autre, peut importe vu qu'on sait qu'elles ont le même nombre d'éléments). Pour cela, une boucle for sur les indices est recommandée, car on devoir récupérer l'élément de la liste `lstA` à la position `i`, mais également celui de la liste `lstB` à la position `i` afin de procéder à la comparaison :
+Nous parcourons ensuite les listes en utilisant une boucle `for` sur les indices (de l'une ou de l'autre, peu importe, car nous savons qu'elles ont le même nombre d'éléments). À chaque itération, nous récupérons l'élément de la liste `lstA` à la position `i` ainsi que celui de la liste `lstB` à la position `i` pour les comparer et mettre à jour le score final en conséquence :
 
 ```python
 def compareAnnees(lstA, lstB) :
     
-    # on s'assure que les deux listes aient la même longueur
+    # On s'assure que les deux listes ont la même longueur
     if len(lstA) != len(lstB) :
-        print("Erreur : les deux listes n'ont pas la même longueur")
+        print("Erreur : les deux listes n'ont pas la même longueur.")
         return None   
 
     scoreFinal = 0 
 
     for i in range(len(lstA)) :
-        # on récupère les éléments :
+        # On récupère les éléments
         eltA = lstA[i]
         eltB = lstB[i]
 
-        # on effectue la comparaison de eltA et eltB, et 
-        # met à jour le scoreFinal en conséquence :
+        # On effectue la comparaison entre eltA et eltB, et 
+        # on met à jour le scoreFinal en conséquence
         if eltA > eltB :
             scoreFinal += 1
         else :
             scoreFinal -= 1
 ```
 
-Une fois que l'on a comparé tous les éléments, on peut renvoyer le score final :
+Une fois que nous avons comparé tous les éléments, nous pouvons renvoyer le score final :
 
 ```python
 def compareAnnees(lstA, lstB) :
     
-    # on s'assure que les deux listes aient la même longueur
+    # On s'assure que les deux listes ont la même longueur
     if len(lstA) != len(lstB) :
-        print("Erreur : les deux listes n'ont pas la même longueur")
+        print("Erreur : les deux listes n'ont pas la même longueur.")
         return None   
 
     scoreFinal = 0 
 
     for i in range(len(lstA)) :
-        # on récupère les éléments :
+        # On récupère les éléments
         eltA = lstA[i]
         eltB = lstB[i]
 
-        # on effectue la comparaison de eltA et eltB, et 
-        # met à jour le scoreFinal en conséquence :
-        if eltA > eltB :
-            scoreFinal += 1
-        else :
-            scoreFinal -= 1
-
-    return scoreFinal
-```
-
-Et voilà ! Maintenant on mets tout ensemble, et on n'oublie pas l'appel de la fonction `question4()` :
-
-```python
-def question4() :
-
-    # on récupère les éléments (températures et moyennes)
-    # pour l'année A
-    temperaturesAnneeA = genereAnnee()
-    moyennesA = moyennesAnnee(temperaturesAnneeA)
-
-    # on récupère les éléments (températures et moyennes)
-    # pour l'année B
-    temperaturesAnneeB = genereAnnee()
-    moyennesB = moyennesAnnee(temperaturesAnneeB)
-
-    scoreComparaison = compareAnnees()
-    if (scoreComparaison > 0) :
-        print("Les températures de la liste A sont en moyennes supérieures à celles de la liste B")
-    else :
-        print("Les températures de la liste B sont en moyennes supérieures à celles de la liste A")
-
-def compareAnnees(lstA, lstB) :
-    
-    # on s'assure que les deux listes aient la même longueur
-    if len(lstA) != len(lstB) :
-        print("Erreur : les deux listes n'ont pas la même longueur")
-        return None   
-
-    scoreFinal = 0 
-
-    for i in range(len(lstA)) :
-        # on récupère les éléments :
-        eltA = lstA[i]
-        eltB = lstB[i]
-
-        # on effectue la comparaison de eltA et eltB, et 
-        # met à jour le scoreFinal en conséquence :
+        # On effectue la comparaison entre eltA et eltB, et 
+        # on met à jour le scoreFinal en conséquence
         if eltA > eltB :
             scoreFinal += 1
         else :
             scoreFinal -= 1
 
     return scoreFinal
-
-question4()
 ```
+
+Ainsi, nous avons complété le code de la fonction `compareAnnees()`.
+
+Le code complet pour la question 4 est donné ci-dessus, avec les fonctions `question4()` et `compareAnnees()` implémentées correctement. La fonction `question4()` génère deux années et calcule leurs moyennes, puis compare les moyennes et affiche un message en fonction du résultat.
 
 **Version alternative pour compareAnnees(), hors programme**
 
