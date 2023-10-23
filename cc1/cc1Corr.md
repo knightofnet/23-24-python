@@ -613,13 +613,13 @@ Remarque : La fonction ``randint(min, max)`` du module random n'est pas appropri
 
 **Corrigé :**
 
-Il va falloir générer un ensemble de valeur. Pour nous y aider, la remarque en fin d'énoncé nous indique qu'il va falloir utiliser la fonction `uniform()` du module random. Commençons alors par importer la fonction :
+Pour générer un ensemble de valeurs, nous devons suivre les indications fournies à la fin de l'énoncé, qui nous indiquent d'utiliser la fonction `uniform()` du module `random`. Commençons par importer cette fonction :
 
 ```python
 from random import uniform
 ```
 
-Ensuite, on peut définir la fonction en écrivant sa signature :
+Ensuite, nous pouvons définir la fonction en écrivant sa signature :
 
 ```python
 from random import uniform
@@ -628,97 +628,93 @@ def genereListeTemperature(nbJour, tMin, tMax) :
     pass
 ```
 
-Puisque la fonction va devoir retourner une liste de températures, on commence le code de la fonction par initialiser une liste vide ``temperatures`` pour conserver les températures que l’on générera.
+Puisque la fonction doit retourner une liste de températures, nous commençons le code de la fonction par initialiser une liste vide, `temperatures`, pour stocker les températures que nous allons générer.
 
 ```python
 from random import uniform
 
 def genereListeTemperature(nbJour, tMin, tMax) :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperatures = []
 ```
 
-Ensuite, on sait que l'on doit un nombre bien précis de températures, égale à `nbJour`. Puisqu'on sait combien on en veut, on va utiliser une boucle `for`.
+Ensuite, puisque nous savons que nous avons besoin d'un nombre précis de températures, soit `nbJour`, nous utilisons une boucle `for` pour générer ces températures.
 
 ```python
 from random import uniform
 
 def genereListeTemperature(nbJour, tMin, tMax) :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperatures = []
 
     for _ in range(nbJour) :
         pass
 ```
 
-A chaque itération, on va :
+À chaque itération, nous faisons ce qui suit :
 
-- récupérer une température aléatoirement entre `tMin` et `tMax` en utilisant la fonction `uniform()`,
-- puis on va arrondir cette valeur, avec deux chiffres après la virgule. Pour cela, on utilisera la fonction `round()`.
-- et on ajoutera cette valeur arrondie dans la liste `temperatures`.
+- Nous générons une température aléatoire entre `tMin` et `tMax` en utilisant la fonction `uniform()`.
+- Ensuite, nous arrondissons cette valeur à deux chiffres après la virgule en utilisant la fonction `round()`.
+- Enfin, nous ajoutons cette valeur arrondie à la liste `temperatures`.
 
 ```python
 from random import uniform
 
 def genereListeTemperature(nbJour, tMin, tMax) :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperatures = []
 
     for _ in range(nbJour) :
-        # on génère une température aléatoire entre tMin et tMax
+        # Génération d'une température aléatoire entre tMin et tMax
         t = uniform(tMin, tMax)
-        # on arrondit la température à deux chiffres après 
-        # la virgule avec la fonction round().
+        # Arrondissement de la température à deux chiffres après la virgule avec la fonction round()
         tArrondie = round(t, 2)
-        # on ajoute cette température arrondie à la 
-        # liste temperatures.
-        temperature.append(t)
+        # Ajout de cette température arrondie à la liste temperatures
+        temperatures.append(tArrondie)
 ```
 
-De façon plus concise, on peut aussi écrire ceci :
+De manière plus concise, nous pouvons également écrire ceci :
 
 ```python
 from random import uniform
 
 def genereListeTemperature(nbJour, tMin, tMax) :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperatures = []
 
     for _ in range(nbJour) :
-        temperature.append(round(uniform(tMin, tMax), 2))
+        temperatures.append(round(uniform(tMin, tMax), 2))
 ```
 
-Enfin, on retourne la liste des températures en fin de fonction.
+Enfin, nous retournons la liste des températures à la fin de la fonction.
 
 ```python
 from random import uniform
 
 def genereListeTemperature(nbJour, tMin, tMax) :
-    # on initialise la liste qui gardera les températures générées.
+    # Initialisation de la liste pour stocker les températures générées.
     temperatures = []
 
     for _ in range(nbJour) :
-        # on génère une température aléatoire entre tMin et tMax
+        # Génération d'une température aléatoire entre tMin et tMax
         t = uniform(tMin, tMax)
-        # on arrondit la température à deux chiffres après 
-        # la virgule avec la fonction round().
+        # Arrondissement de la température à deux chiffres après la virgule avec la fonction round()
         tArrondie = round(t, 2)
-        # on ajoute cette température arrondie à la 
-        # liste temperatures.
-        temperature.append(t)
+        # Ajout de cette température arrondie à la liste temperatures
+        temperatures.append(tArrondie)
 
     return temperatures
 ```
 
-**Version alternative, avec les compréhensions de listes :**
+**Version alternative avec les compréhensions de listes :**
 
-Il était possible d'utiliser une construction par compréhension pour résoudre cette question :
+Il était possible d'utiliser une construction par compréhension pour résoudre cette question de manière plus concise :
 
 ```python
 from random import uniform
 
 def genereListeTemperature(nbJour, tMin, tMax) :
-    return [ round(uniform(tMin, tMax), 2)  for _ in range(nbJour)]
+    return [round(uniform(tMin, tMax), 2) for _ in range(nbJour)]
 ```
 
 ### Question 2
