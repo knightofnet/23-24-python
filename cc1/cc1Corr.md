@@ -7,9 +7,9 @@
     - [Question 2b](#question-2b)
     - [Question 3](#question-3)
     - [Question 4](#question-4)
-      - [Solution 1 - boucler sur les indices](#solution-1---boucler-sur-les-indices)
-      - [Solution 2 - boucler avec enumerate()](#solution-2---boucler-avec-enumerate)
-      - [Solution 3 - avec un compteur externe à la boucle](#solution-3---avec-un-compteur-externe-à-la-boucle)
+      - [Solution 1 - Parcourir les indices](#solution-1---parcourir-les-indices)
+      - [Solution 2 - Utiliser `enumerate()`](#solution-2---utiliser-enumerate)
+      - [Solution 3 - Utiliser un compteur externe à la boucle](#solution-3---utiliser-un-compteur-externe-à-la-boucle)
   - [Exercice 2](#exercice-2)
     - [Question 1](#question-1-1)
     - [Question 2](#question-2)
@@ -439,9 +439,9 @@ Cela affichera :
 
 **Corrigé :**
 
-Pour répondre à cette question, il faut dans un premier temps comprendre et observer un peu tout ce qui est indiqué.
+Pour répondre à cette question, il faut d'abord comprendre et examiner attentivement toutes les indications données.
 
-Il va falloir écrire une fonction, nommée `afficheHisto(lst, car)` avec deux paramètres : `lst` et `car`. Si on regarde l'exemple fourni, on voit que le histogramme est en fonction des valeurs de `lst`. Enfin presque, parce que dans `lst` on retrouve des chiffres à virgules, mais pas de l'histogramme; c'est plus la valeur entière de chaque élément qui sera utilisée pour réaliser l'affichage.
+Il s'agit de créer une fonction Python nommée `afficheHisto(lst, car)` avec deux paramètres : `lst` et `car`. En examinant l'exemple fourni, on peut voir que l'histogramme dépend des valeurs de `lst`. Cependant, dans `lst`, nous avons des nombres décimaux, mais l'histogramme est basé sur la valeur entière de chaque élément.
 
 Commençons par définir la fonction :
 
@@ -450,7 +450,7 @@ def afficheHisto(lst, car) :
     pass
 ```
 
-On sait que `car` est un paramètre optionnel. Il a donc une valeur par défaut. L'énoncé nous apprends qu'il s'agit de ``'*'``.
+Nous savons que `car` est un paramètre optionnel avec une valeur par défaut de `'*'`.
 La signature de la fonction devient alors :
 
 ```python
@@ -458,54 +458,52 @@ def afficheHisto(lst, car="*") :
     pass
 ```
 
-Par la suite, il va falloir parcourir la liste `lst` (qui est passée en paramètre) pour effectuer l'affichage souhaité. Une boucle `for` est parfaitement adaptée à cette tâche.
-
-On pourrait directement boucler sur `lst` de cette façon :
+Nous pourrions directement boucler sur `lst` de la manière suivante :
 
 ```python
-for elt in lst :
-    pass # Ici, des opérations sur 'elt' seront effectuées
+for elt in lst:
+    pass  # À cet endroit, nous effectuerons des opérations sur 'elt'
 ```
 
-On aurait alors successivement dans `elt`, un élément de `lst`. On aurait presque tout ce qu'il faut ! Presque, car si on regarde l'affichage, on constate que chaque ligne commence par l'indice de l'élément (à partir de 1). Il nous faut donc un moyen d'avoir cet indice. Plusieurs façons pour cela :
+À ce stade, `elt` contient successivement un élément de `lst`. Cependant, si nous examinons l'affichage souhaité, nous constatons que chaque ligne commence par l'indice de l'élément (à partir de 1). Nous avons donc besoin d'un moyen d'obtenir cet indice. Il existe plusieurs façons de le faire :
 
-- Solution 1 : on change la définition de la boucle, pour boucler sur les indices plutôt que les éléments de `lst`.
-- Solution 2 : on change la définition de la boucle et on utilise `enumerate(lst)` afin d'obtenir un tuple contenant deux valeurs : l'indice de l'élément et la valeur de l'élément.
-- Solution 3 : on ajoute un compteur qu'on incrémentera à chaque tour de boucle.
+- Solution 1 : changer la définition de la boucle pour parcourir les indices plutôt que les éléments de `lst`.
+- Solution 2 : utiliser `enumerate(lst)` pour obtenir un tuple contenant deux valeurs : l'indice de l'élément et la valeur de l'élément.
+- Solution 3 : ajouter un compteur que nous incrémenterons à chaque itération.
 
-La solution 2 est probablement la solution la plus concise. Regardons quand même les autres :
+La solution 2 semble être la plus concise. Cependant, examinons également les autres options :
 
-#### Solution 1 - boucler sur les indices
+#### Solution 1 - Parcourir les indices
 
-On change la façon de boucler. Dans cette approche, on utilise les indices pour accéder aux éléments de la liste. Cela peut être particulièrement utile lorsque l'indice lui-même est nécessaire pour des opérations supplémentaires ou pour l'affichage.
+Nous pouvons changer la manière dont nous bouclons en utilisant les indices pour accéder aux éléments de la liste. Cette approche peut être utile lorsque l'indice lui-même est nécessaire pour effectuer des opérations supplémentaires ou pour l'affichage.
 
-On va alors boucler sur une étendue : de 0 jusqu'au dernier indice, soit `len(lst) - 1`. En python, on utilisera `range()`. Comme la borne max est exclue en utilisant `range()`, il faut ajouter + 1. Ce qui donnera :
+Pour cela, nous bouclerions sur une plage d'indices, de 0 à l'indice du dernier élément (soit `len(lst) - 1`). En Python, nous pouvons utiliser `range()`. Comme la borne supérieure est exclue avec `range()`, nous ajoutons +1 pour l'inclure, ce qui donne :
 
 ```python
 range(0, len(lst) - 1 + 1)
 ```
 
-Soit :
+Ce qui équivaut à :
 
 ```python
 range(0, len(lst))
 ```
 
-Ou plus simplement :
+Ou encore plus simplement :
 
 ```python
 range(len(lst))
 ```
 
-Pour notre fonction, cela donnera :
+Pour notre fonction, cela donnerait :
 
 ```python
-def afficheHisto(lst, car="*") :
-    for i in range(len(lst)) :
+def afficheHisto(lst, car="*"):
+    for i in range(len(lst)):
         pass
 ```
 
-A ce stade, on a i qui commence à 0. On pourrait utiliser une variable `j`, pour avoir `i + 1` comme valeur, et ainsi avoir un comptage qui commence à 1.
+À ce stade, nous avons `i` qui commence à 0. Nous pourrions utiliser une variable `j` pour avoir `i + 1` comme valeur et ainsi obtenir une numérotation commençant à 1.
 
 Avec `i`, on peut également récupérer la valeur d'élément à la position `i` dans la liste `lst`.
 
@@ -527,64 +525,66 @@ Pour convertir elt en entier, on utilise la fonction `int()`.
 Ensuite, il n'y a plus qu'à réaliser l'affichage. Ce qui donne :
 
 ```python
-def afficheHisto(lst, car="*") :
-    for i in range(len(lst)) :
+def afficheHisto(lst, car="*"):
+    for i in range(len(lst)):
         j = i + 1
         elt = lst[i]
 
-        # affichage en mode histogramme :
+        # Affichage en mode histogramme :
         eltEntier = int(elt)
         print(j, ":", car * eltEntier)
 ```
 
-#### Solution 2 - boucler avec enumerate()
+#### Solution 2 - Utiliser `enumerate()`
 
-Cette solution est plus clair est plus concise. Avec juste l'utilisation de la fonction `enumerate()`, on récupère à la fois l'indice de l'élément et sa valeur.
+Cette solution est plus claire et plus concise. En utilisant simplement la fonction `enumerate()`, nous obtenons à la fois l'indice de l'élément et sa valeur.
 
-Ensuite, la partie affichage ne change pas. Ce qui donne :
+Ensuite, la partie d'affichage ne change pas, ce qui donne :
 
 ```python
-def afficheHisto(lst, car="*") :
-    for i, elt in enumerate(lst) :
+def afficheHisto(lst, car="*"):
+    for i, elt in enumerate(lst):
         j = i + 1
 
-        # affichage en mode histogramme :
+        # Affichage en mode histogramme :
         eltEntier = int(elt)
         print(j, ":", car * eltEntier)
 ```
 
-A noter, que la fonction `enumerate()` permet également de gérer le début de la numérotation à 1. Il faut pour cela valoriser le paramètre start de enumerate à 1. On n'a alors plus besoin de i dans notre fonction :
+Notez que la fonction `enumerate()` nous permet également de gérer le début de la numérotation à 1 en spécifiant la valeur de départ avec le paramètre `start`. Nous n'avons donc plus besoin de `i` dans notre fonction :
 
 ```python
-def afficheHisto(lst, car="*") :
-    for j, elt in enumerate(lst, start=1) :        
-        # affichage en mode histogramme :
+def afficheHisto(lst, car="*"):
+    for j, elt in enumerate(lst, start=1):
+        # Affichage en mode histogramme :
         eltEntier = int(elt)
         print(j, ":", car * eltEntier)
 ```
 
-#### Solution 3 - avec un compteur externe à la boucle
+#### Solution 3 - Utiliser un compteur externe à la boucle
 
-Dernière idée possible : définir et incrémenter un compteur. C'est une approche un peu plus manuelle, mais elle peut être utile dans certains contextes. Voici ce que cela donne :
+L'idée ici est de définir et d'incrément
+
+er un compteur. C'est une approche un peu plus manuelle, mais elle peut être utile dans certains contextes. Voici comment cela fonctionne :
 
 ```python
-def afficheHisto(lst, car="*") :
-    # on défini le compteur, à 1, puisque la
-    # numérotation commence à 1 dans notre exercice.
+def afficheHisto(lst, car="*"):
+    # Nous initialisons le compteur à 1, car la numérotation commence à 1 dans notre exercice.
     j = 1
 
-    # on peut utiliser la boucle for sur une liste
-    # en procédant ainsi. On récupère alors directement
-    # elt.
-    for elt in lst :     
+    # Nous pouvons utiliser la boucle for directement sur la liste
+    # et obtenir directement 'elt'.
+    for elt in lst:
 
-        # affichage en mode histogramme :
+        # Affichage en mode histogramme :
         eltEntier = int(elt)
         print(j, ":", car * eltEntier)
 
-        # on incremente le compteur :
+        # Nous incrémentons le compteur :
         j += 1
 ```
+
+Choisissez la solution qui vous convient le mieux en fonction de vos besoins.
 
 ## Exercice 2
 
