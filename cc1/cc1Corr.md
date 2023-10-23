@@ -237,48 +237,41 @@ En créant une fonction, testez l’évolution de cette suite. Vers quoi semble 
 
 **Corrigé :**
 
-Ici, il fallait transposer la suite mathématique de l'énoncé en fonction python, tout en faisant évoluer la suite sur un interval intéressant, par exemple de 1 à 100, de 1 à 1000..., 1 à n.
+Ici, il fallait transposer la suite mathématique de l'énoncé en une fonction Python tout en faisant évoluer la suite sur un intervalle intéressant, par exemple de 1 à 100, de 1 à 1000, ou de 1 à n.
 
-Nous commençons par définir une fonction, disons evolution_suite, qui prendra en paramètres :
+Commençons par définir une fonction, que nous appellerons `evolution_suite`, qui prendra en paramètres :
 
-- un nombre initial `a0` (qui est supérieur à 0),
+- un nombre initial `a0` (qui doit être supérieur à 0),
 - un nombre d'itérations `n` pour observer l'évolution de la suite.
 
 Nous utiliserons la fonction `f(x)` définie précédemment pour calculer chaque terme suivant de la suite.
 
-Ce qui donne la signature de fonction suivante :
+La signature de la fonction serait la suivante :
 
 ```python
-def evolution_suite(a0, n) : 
-    pass 
+def evolution_suite(a0, n):
+    pass
 ```
 
-Le paramètre `a0` va permettre de donner la valeur initial à la variable `a`, qui contiendra la valeur du terme à chaque itération. On va utiliser une boucle `for` pour calculer chaque terme suivant de la suite en utilisant la fonction `f(x)` et on l'affichera à chaque itération.
+Le paramètre `a0` permettra de donner la valeur initiale à la variable `a`, qui contiendra la valeur du terme à chaque itération. Nous utiliserons une boucle `for` pour calculer chaque terme suivant de la suite en utilisant la fonction `f(x)`, puis nous l'afficherons à chaque itération.
 
 ```python
-def evolution_suite(a0, n) :  
+def evolution_suite(a0, n):
     a = a0
-    for i in range(1,n) :
+    for i in range(1, n + 1):
         a = f(a)
+        print("Terme a_", i, ":", a)
 ```
 
-On peut ajouter un `print()` pour afficher l'évolution de `a`.
+Nous ajoutons un `print()` pour afficher l'évolution de `a`.
 
-```python
-def evolution_suite(a0, n) :  
-    a = a0
-    for i in range(1,n) :
-        a = f(a)
-        print("Terme a_", i,":",a)
-```
-
-On réalise alors l'appel de la fonction `evolution_suite()`, avec une valeur de `a0` superieur à 0, disons  1, puis un `n` intéressant; disons 100. Si le n n'est pas intéressant, c'est-à-dire qu'il ne nous permet pas de bien voir l'évolution de la suite, on prendra une valeur plus grande.
+Pour utiliser cette fonction, nous pouvons l'appeler avec une valeur de `a0` supérieure à 0, par exemple 1, et un `n` intéressant, par exemple 100. Si `n` n'est pas suffisamment grand pour bien observer l'évolution de la suite, nous pouvons prendre une valeur plus grande.
 
 ```python
 evolution_suite(1, 100)
 ```
 
-Remarque : ici il ne faut pas écrire ``print(evolution_suite(1, 100))``, car la fonction `evolution_suite()` ne renvoie rien, donc il n'y a rien à afficher par `print()`.
+Remarque : Il ne faut pas écrire `print(evolution_suite(1, 100))`, car la fonction `evolution_suite()` ne renvoie rien, donc il n'y a rien à afficher avec `print()`.
 
 ### Question 3
 
