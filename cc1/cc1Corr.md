@@ -888,20 +888,18 @@ def moyennesAnnee(listeAnnee) :
     pass
 ```
 
-Cette fonction prend en entrée la liste créée à la question 2, et va produire une nouvelle liste, contenant les moyennes des températures par mois.
+Cette fonction prend en entrée la liste créée à la question 2 et va produire une nouvelle liste contenant les moyennes des températures par mois.
 
-Puisque la fonction va devoir retourner une liste, on commence le code  de la fonction par initialiser une liste vide ``moyennes`` pour conserver les moyennes par mois des températures.
+Puisque la fonction doit retourner une liste, nous commençons le code de la fonction en initialisant une liste vide nommée ``moyennes`` pour conserver les moyennes mensuelles des températures.
 
 ```python
 def moyennesAnnee(listeAnnee) :
     moyennes = []
 ```
 
-Pour pouvoir faire la moyenne par mois, il va falloir découper en sous-liste de nbJour éléments, la liste en entrée (faire un peu l'inverse de la fonction de la question 2). On sait qu'on a 12 mois, et pour chaque mois, le tuple nbrJoursParMois renseigne le nombre de jour.
+Pour calculer les moyennes par mois, nous devons découper la liste d'entrée en sous-listes de `nbJour` éléments (faire un peu l'inverse de la fonction de la question 2). Nous savons qu'il y a 12 mois, et pour chaque mois, le tuple `nbrJoursParMois` donne le nombre de jours.
 
-On peut alors boucler sur le tuple nbrJoursParMois. Mais là encore, avec quel type de boucle ? On peut boucler sur les indices, ou avec enumerate(). C'est cette solution que l'on va illustrer ici.
-
-A chaque tour de boucle, avec enumerate(), on récupère à la fois l'indice de l'élément et sa valeur.
+Nous allons donc boucler sur le tuple `nbrJoursParMois`. La méthode la plus appropriée est d'utiliser `enumerate()`, ce qui nous permettra d'obtenir à la fois l'indice et la valeur à chaque itération. Nous aurions également pu boucler sur les indices, comme dans la question 2.
 
 Ce qui donne :
 
@@ -913,60 +911,46 @@ def moyennesAnnee(listeAnnee) :
         pass
 ```
 
-L'indice nous permettra de réaliser l'affiche par la suite.
+L'indice nous servira pour l'affichage ultérieur.
 
-Avec le nombre de jour `nbrJour`, on va pouvoir découper la liste initiale en utilisant le slicing. Il faut un indice de départ et un indice d'arrivé (+1 car il est exclu). 
+Pour découper correctement la liste en sous-listes, nous avons besoin de deux indices : un pour le début et un pour la fin (+1 car la fin est exclusive).
 
-Pour le 1er mois, c'est facile :
+Pour le premier mois (janvier), c'est simple :
 
-- l'indice de départ, c'est 0
-- l'indice d'arrivé, c'est le nombre de jour dans le mois nbrJour.
+- L'indice de début est 0.
+- L'indice de fin est le nombre de jours dans le mois (`nbrJour`).
 
-Sur la liste de départ, cela donne :
+Pour la suite, nous ne pouvons pas simplement repartir de 0, car le mois suivant commence au 32e élément de la `listeAnnee`, soit à l'indice 31 de la liste `listeAnnee`.
 
-```python
-def moyennesAnnee(listeAnnee) :
-    moyennes = []
+Nous devons donc garder en mémoire (dans une variable comme `indiceDebutMois`) la valeur précédente de `nbrJour` pour obtenir le point de départ, et pour gérer le mois suivant, il faut mettre à jour cette valeur.
 
-    for i, nbrJour in enumerate(nbrJoursParMois) :
-        # ici nbrJour vaut 31
-        ssListe = listeAnnee[0:nbrJour]
-```
+Pour la borne supérieure, il suffit de faire `indiceDebutMois + nbrJour`. Ainsi :
 
-Pour le second mois, on ne peut pas partir de 0, mais nbrJour + 1, puisque le mois de février commence au 32 éléments de `listeAnnee`, donc à l'indice 31 de la liste `listeAnnee`.
+- Pour janvier, mois 01 :
+  - Borne de départ : `indiceDebutMois` (0)
+  - Borne de fin : `indiceDebutMois` (0) + `nbrJour` (31) => 31
+  - Mise à jour de `indiceDebutMois` : ajout de `nbrJour`
 
-Il est donc nécessaire de garder en mémoire (donc dans une variable, par exemple `indiceDebutMois`) la valeur précédente de `nbrJour`, pour avoir la borne de départ. Et pour gérer le mois M+1, il faut mettre à jour cette valeur.
+- Pour février, mois 02 :
+  - Borne de départ : `indiceDebutMois` (31)
+  - Borne de fin : `indiceDebutMois` (31) + `nbrJour` (28) => 59
+  - Mise à jour de `indiceDebutMois` : ajout de `nbrJour`
 
-Pour la borne max, il suffira de demander `indiceDebutMois + nbrJour`. On aura ainsi :
-
-Pour janvier, mois 01 :
-
-- borneMin : indiceDebutMois  0 au départ
-- borneMax : indiceDebutMois (0) + nbrJour (31) => 31
-- indiceDebutMois : incrément de + nbrJour
-  
-Pour février, mois 02 :
-
-- borneMin : indiceDebutMois  31
-- borneMax : indiceDebutMois (31) + nbrJour (28) => 59
-- indiceDebutMois : incrément de + nbrJour
-
-Et ainsi de suite.
-Ce qui donne :
+Et ainsi de suite. Voici le code correspondant :
 
 ```python
 def moyennesAnnee(listeAnnee) :
     moyennes = []
 
-    # On définit l'indice de départ, la borneMin du range.
-    # Au départ, à 0
+    # On définit l'indice de début, la borneMin du range.
+    # Au départ, à 0.
     indiceDebutMois = 0
 
     for i, nbrJour in enumerate(nbrJoursParMois) :
         
-        # Sous liste récupérant les éléments d'un mois.
+        # Extraction des températures du mois courant.
         ssListe = listeAnnee[indiceDebutMois : indiceDebutMois + nbrJour]
-        # Mise à jour de l'indice de départ
+        # Mise à jour de l'indice de début.
         indiceDebutMois += nbrJour
 
         # On peut afficher la longueur de ssListe à cette 
@@ -977,21 +961,21 @@ def moyennesAnnee(listeAnnee) :
 moyennesAnnee(temperatures_annee)
 ```
 
-Une fois qu'on récupère `ssListe` pour chaque tour de boucle, il suffit de calculer la moyenne des températures de cette sous-liste. Puis d'ajouter cette moyenne à la liste de retour : `moyennes`.
+Une fois récupéré `ssListe` pour chaque tour de boucle, il suffit de calculer la moyenne des températures de cette sous-liste. Puis d'ajouter cette moyenne à la liste de retour : `moyennes`.
 
 ```python
 def moyennesAnnee(listeAnnee) :
     moyennes = []
 
-    # On définit l'indice de départ, la borneMin du range.
-    # Au départ, à 0
+    # On définit l'indice de début, la borneMin du range.
+    # Au départ, à 0.
     indiceDebutMois = 0
 
     for i, nbrJour in enumerate(nbrJoursParMois) :
         
-        # Sous liste récupérant les éléments d'un mois.
+        # Extraction des températures du mois courant.
         ssListe = listeAnnee[indiceDebutMois : indiceDebutMois + nbrJour]
-        # Mise à jour de l'indice de départ
+        # Mise à jour de l'indice de début.
         indiceDebutMois += nbrJour
 
         # on calcule la moyenne : la somme des éléments de
@@ -1003,9 +987,9 @@ def moyennesAnnee(listeAnnee) :
         moyennes.append(moy)
 ```
 
-Maintenant qu'on a tout ce qu'il nous faut pour la liste en retour de cette fonction, on peut s'occuper de l'affichage.
+Maintenant que nous avons écris le code pour le retour de cette fonction, il faut  s'occuper de l'affichage.
 
-Pour gérer plus facilement les espaces, on peut valoriser le paramètre sep de print avec une chaine vide (`sep=""`). Le nombre de jour affiché peut être recupéré directement avec `nbrJour` ou alors avec `len(ssListe)`.
+Pour gérer plus facilement les espaces, il est possible de valoriser le paramètre sep de print avec une chaine vide (`sep=""`). Le nombre de jour affiché peut être recupéré directement avec `nbrJour` ou alors avec `len(ssListe)`.
 
 ```python
 def moyennesAnnee(listeAnnee) :
@@ -1029,12 +1013,11 @@ def moyennesAnnee(listeAnnee) :
         moy = sum(ssListe) / len(ssListe)
         # on arrondi la moyenne avec deux chiffres après la virgule :
         moy = round(moy, 2)
-
-        # on ajoute notre moyenne calculée, moy, à la liste
-        # de retour : moyennes.
+        
+        # Ajout de la moyenne calculée à la liste de retour.
         moyennes.append(moy)
 
-        # affichage :
+        # Affichage de la moyenne.
         print(" Mois ", i, " (", len(ssListe), " jours) : ", moy," °C", sep="")
 
 moyennesAnnee(temperatures_annee)
@@ -1058,12 +1041,12 @@ Moyennes :
  Mois 11 (31 jours) : 7.77 °C
 ```
 
-La numératation des mois commence à 0, au lieu de 1. Pour corriger cela on peut soit :
+La numérotation des mois commence à 0, au lieu de 1. Pour corriger cela il est possible de soit :
 
 - introduire une variable `j` dont la valeur sera `i + 1`.
 - écrire `i + 1` dans le `print()`.
 
-On va prendre la seconde option. Pour la première option, reportez vous à la question 1, exercice 4 : c'est la même logique.
+Nous allons illustrer ici la seconde option. Pour la première option, reportez vous à la question 1, exercice 4 : c'est la même logique.
 
 ```python
 def moyennesAnnee(listeAnnee) :
@@ -1104,43 +1087,37 @@ Cette fois-ci l'affichage est OK. On n'oublie pas d'ajouter le retour de la fonc
 def moyennesAnnee(listeAnnee) :
     moyennes = []
 
-    # On définit l'indice de départ, la borneMin du range.
-    # Au départ, à 0
+    # On définit l'indice de début, la borneMin du range.
+    # Au départ, à 0.
     indiceDebutMois = 0
 
     print("Moyennes :")
 
     for i, nbrJour in enumerate(nbrJoursParMois) :
         
-        # Extraction des températures du mois courant :
-        # ----
-        # Sous liste récupérant les éléments d'un mois.
+        # Extraction des températures du mois courant.
         ssListe = listeAnnee[indiceDebutMois : indiceDebutMois + nbrJour]
-        # Mise à jour de l'indice de départ
+        # Mise à jour de l'indice de début.
         indiceDebutMois += nbrJour
 
-        # Calcul de la moyenne des températures du mois courant :
-        # ----
-        # on calcule la moyenne : la somme des éléments de
-        # ssListe divisée par la longeur de ssListe.
+        # Calcul de la moyenne des températures du mois courant.
         moy = sum(ssListe) / len(ssListe)
-        # on arrondi la moyenne avec deux chiffres après la virgule :
+        # Arrondi de la moyenne à deux chiffres après la virgule.
         moy = round(moy, 2)
-        
-        # on ajoute notre moyenne calculée, moy, à la liste
-        # de retour : moyennes.
+
+        # Ajout de la moyenne calculée à la liste de retour.
         moyennes.append(moy)
 
-        # Affichage de la moyenne :
-        # ----
+        # Affichage de la moyenne.
+        print(f" Mois {i + 1} ({len(ssListe)} jours) : {moy} °C")
         print(" Mois ", i + 1, " (", len(ssListe), " jours) : ", moy," °C", sep="")
 
     return moyennes
 
 moyennesAnnee(temperatures_annee)
 ```
+Avec le formatage des chaînes, qui a été abordé dans le cours 6, vous auriez également pu simplifier l'affichage comme suit :
 
-Avec la formatage des chaines, que l'on a vu dans le cours 6, on aurait pu simplifier le print() responsable de l'affichage :
 
 ```python
 def moyennesAnnee(listeAnnee) :
@@ -1176,7 +1153,6 @@ def moyennesAnnee(listeAnnee) :
 
 moyennesAnnee(temperatures_annee)
 ```
-
 ### Question 4
 
 **Enoncé :**
