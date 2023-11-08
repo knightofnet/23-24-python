@@ -1,7 +1,7 @@
 Roulat : 18.1
-Vidal : DÃ©faillant
+Vidal : Défaillant
 Tendre : 16.5
-BrutÃ© : 5.4
+Bruté : 5.4
 Garant : DEFAILLANT
 Riss : 10
 Vorace : 8.9
