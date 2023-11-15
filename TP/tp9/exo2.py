@@ -24,3 +24,17 @@ v3.roule(250)
 
 v2.affiche()
 v3.affiche()
+
+class Conducteur :
+
+    def __init__(self, nom) :
+        self.nom = nom
+
+    def conduit(self, voiture, km) :
+        voiture.roule(km)
+        print(f"{self.nom} a conduit la {voiture.marque} {voiture.modele} pendant {km} km")
+        voiture.affiche()
+
+c1 = Conducteur("Margot")
+c1.conduit(v3, 266)
+
