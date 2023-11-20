@@ -18,6 +18,7 @@ class MaClasse :
     # Prends toujours 2 arguments : self [l'instance courante] et un autre objet
     # Doit renvoyer un booléen (True ou False).
     def __eq__(self, autre) :
+        
         return 
  
     # Surcharge de la méthode __ne__() pour tester l'inégalité de 2 instances.
