@@ -19,7 +19,7 @@ def somme_puissance_impaire_accu(n, p) :
     for nbr in range(n + 1) :
         if nbr %2 !=0 :
             s += nbr
-    return ss
+    return s
     
 p = somme_puissance_impaire(4, 2)
 print(p)
