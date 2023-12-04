@@ -11,7 +11,7 @@
 
 3. Créez une fonction pour vérifier si la matière préférée de l'étudiant contient le mot 'Math'. Elle renvoie Vrai si oui, Faux sinon.
 
-4. Créez une fonction pour vérifier pour compter le nombre de lettres 'a' dans le nom de l'étudiant. Afficher le résultat.
+4. Créez une fonction pour pour compter le nombre de lettres 'a' dans le nom de l'étudiant. Afficher le résultat.
 
 5. Créez une fonction verifie, avec une chaine de caractère en entrée. La fonction vérifie que cette chaine respecte les conditions suivantes : 
 
