@@ -7,7 +7,7 @@
 - Age : 20
 - Matiere préférée : Mathématiques
 
-2. Créez une fonction qui prend un dictionnaire en entrée et qui affichee chaque élément du dictionnaire en utilisant une boucle for.
+2. Créez une fonction qui prend un dictionnaire en entrée et qui affiche chaque élément du dictionnaire en utilisant une boucle for.
 
 3. Créez une fonction pour vérifier si la matière préférée de l'étudiant contient le mot 'Math'. Elle renvoie Vrai si oui, Faux sinon.
 
@@ -15,7 +15,7 @@
 
 5. Créez une fonction verifie, avec une chaine de caractère en entrée. La fonction vérifie que cette chaine respecte les conditions suivantes : 
 
-- la longueur ne dépasse 30 caractères,
+- la longueur ne dépasse pas 30 caractères,
 - le premier et le dernier caractère n'est pas un chiffre, ni un espace.
 - que la chaine ne contiennent pas plus de 3 espaces.
 
