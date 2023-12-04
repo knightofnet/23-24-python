@@ -17,8 +17,8 @@ On s'intéresse à la gestion des étudiants d'une école.
 
 2. Ajoutez une méthode statique `mention` qui prend en paramètre une moyenne et retourne une mention en fonction de la moyenne de l'étudiant :
    - Si la moyenne est supérieure ou égale à 16, retournez "Très bien".
-   - Si la moyenne est entre 14 et 16 (inclus), retournez "Bien".
-   - Si la moyenne est entre 12 et 14 (inclus), retournez "Assez bien".
+   - Si la moyenne est entre 14 et 16 (exclu), retournez "Bien".
+   - Si la moyenne est entre 12 et 14 (exclu), retournez "Assez bien".
    - Si la moyenne est inférieure à 12, retournez "Insuffisant".
    
    Ensuite, ajoutez une méthode `miseAJourMoyenne` qui permet de mettre à jour la moyenne de l'étudiant en fonction de nouvelles notes (une liste de nombres à virgule flottante). La nouvelle moyenne est calculée en prenant la moyenne des nouvelles notes et des notes précédentes. N'oubliez pas de mettre à jour l'attribut `moyenne` de l'étudiant.
