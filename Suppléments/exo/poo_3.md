@@ -21,7 +21,7 @@ Créez une méthode statique `verifISBN` qui prend en paramètre une chaîne de 
 
 Dans le constructeur de la classe `Livre`, utilisez cette méthode pour valider le numéro ISBN. Si le numéro n'est pas valide, levez une exception `ValueError`.
 
-**Question 4 :**  
+**Question 3 :**  
 Définissez une classe `Bibliotheque` avec les éléments suivants :
 
 - Un attribut `nom` pour le nom de la bibliothèque.
