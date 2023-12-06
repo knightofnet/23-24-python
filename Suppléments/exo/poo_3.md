@@ -31,5 +31,3 @@ Définissez une classe `Bibliotheque` avec les éléments suivants :
 
 Testez ces méthodes avec des exemples concrets.
 
-**Question 5 :**  
-Ajoutez une méthode `liste_livres` à la classe `Bibliotheque` pour afficher tous les livres de la bibliothèque, triés par auteur ou titre (selon un paramètre).
